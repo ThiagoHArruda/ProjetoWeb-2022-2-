@@ -1,12 +1,13 @@
 .cabecalho {
     background-color: var(--cinza-claro);
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     height: 3.7em;
     gap: 3px;
     position: relative;
 }
+
 
 .cabecalho__logo-link {
     float: left;
@@ -126,6 +127,7 @@
 .cabecalho__icon-direita{
     visibility: hidden;
 }
+
 
 @media screen and (max-width: 815px) {
     .cabecalho__menu-esquerda, .cabecalho__menu-direita ul{
