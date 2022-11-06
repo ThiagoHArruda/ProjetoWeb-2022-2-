@@ -2,6 +2,7 @@ import {homeView} from "../view/homeView.js";
 import {LoginAPI} from "../controllers/loginAPI.js"
 import {loginView} from "../view/loginView.js";
 import {genresMovie} from "./apiMovie/genresMovie.js"
+import { Message } from "../view/message.js";
 
 export class viewController{
 
@@ -42,10 +43,12 @@ export class viewController{
         sair.addEventListener("click",()=>{
                 const nav = document.querySelector(".cabecalho");
                 const container = document.querySelectorAll(".container");
+                const mensagem = new Message();
                 nav.outerHTML=""
                 container.forEach(element => {
                     element.outerHTML=""
                 });
+                mensagem.insertMessage("Log Out Feito com Sucesso");
                 localStorage.clear();
                 this.checaToken();
         })
@@ -53,10 +56,11 @@ export class viewController{
     callLogin(){
         //pegando o botão
         const botao = document.querySelector(".login__submit");
+        const mensagem = new Message();
         botao.addEventListener("click", ()=>{
             const login = document.querySelectorAll("input");
             if (login[1].value.length<=3){
-                alert("Senha curta demais")
+                mensagem.insertMessage("Senha curta demais");
                 return null
                 // Chamar mensagem de error
             }

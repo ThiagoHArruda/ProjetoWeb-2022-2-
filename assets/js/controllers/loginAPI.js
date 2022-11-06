@@ -1,3 +1,5 @@
+import { Message } from "../view/message.js";
+
 export class LoginAPI{
     constructor(user,password){
         this.item = { email: user, password: password };
@@ -8,12 +10,14 @@ export class LoginAPI{
                 if (data) {
                     const lista = localStorage.getItem('token')
                     if (lista) {
-                        console.log("Entrou")
+                        const mensagem = new Message()
+                        mensagem.insertMessage("Login Feito com Sucesso")
                         req(lista)
                     }
     
                 } else {
-                    console.log("Erro no login")
+                    console.log(data);
+                    
                 }
     
             }).catch((err) => res(err))
@@ -44,8 +48,11 @@ export class LoginAPI{
             body: JSON.stringify(item)
             
         });
-        // console.log(result.status);
-        // Chamar mensagem de error
+        if(result.status==400){
+            const mensagem = new Message()
+            mensagem.insertMessage("Erro no Login")
+        }
+
         return result
     }
     
